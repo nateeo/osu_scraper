@@ -5,8 +5,7 @@ import time
 from bs4 import BeautifulSoup
 
 RANK_PAGE = 'https://osu.ppy.sh/rankings/osu/performance?country=NZ&page='
-MAX_PAGE = 2
-
+MAX_PAGE = 22  # inclusive
 CSV_FILE = 'osu_data.csv'
 
 http = urllib3.PoolManager()
@@ -19,7 +18,7 @@ def get_play_time(text):
     return sub[:sub.find(',')]
 
 
-for i in range(1, MAX_PAGE):
+for i in range(1, MAX_PAGE + 1):
     # save per page in case something happens
     with open(CSV_FILE, 'a') as csv_file:
         start = time.time()
